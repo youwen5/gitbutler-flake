@@ -27,6 +27,7 @@
         {
           default = self.packages.${system}.gitbutler;
           gitbutler = callPackage ./gitbutler.nix { };
+          gitbutler-appimage = callPackage ./gitbutler-appimage.nix { };
         }
       );
     };
