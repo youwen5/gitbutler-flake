@@ -8,7 +8,7 @@
   libsoup_2_4,
   lib,
   git,
-  gnome-keyring
+  gnome-keyring,
   makeWrapper,
   ...
 }:
