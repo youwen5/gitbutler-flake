@@ -38,15 +38,6 @@ stdenv.mkDerivation (finalAttrs: {
     cp -r unpack/usr/share $out/share
   '';
 
-  postFixup = ''
-    wrapProgram $out/bin/gitbutler-tauri \
-      --set PATH ${
-        lib.makeBinPath [
-          git
-        ]
-      }:$out/bin:$PATH
-  '';
-
   meta = {
     description = "Git client for simultaneous branches on top of your existing workflow";
     license = lib.licenses.fsl11Mit;
