@@ -8,6 +8,7 @@
   libsoup_2_4,
   lib,
   git,
+  gnome-keyring
   makeWrapper,
   ...
 }:
@@ -43,6 +44,7 @@ stdenv.mkDerivation (finalAttrs: {
       --set PATH ${
         lib.makeBinPath [
           git
+          gnome-keyring
         ]
       }:$out/bin:$PATH
   '';
