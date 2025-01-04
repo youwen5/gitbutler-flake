@@ -1,10 +1,7 @@
 {
   "version": "0.14.4",
   "x86_64-linux": {
-    "url": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUck9FSStpbTFYWUoyNCs1Q3NIaENqZ1lkTnB6SzhDR3NUWlpwL3c5UlNXTlpBUTZ4TEhMUHA4THRBZVRoUjJGeU9CbWVJV0ovanVqMEpNc3ZkbldDMTBwL1lzVFIwTndnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzM0MDgzMzgwCWZpbGU6R2l0QnV0bGVyXzAuMTQuNF9hbWQ2NC5BcHBJbWFnZS50YXIuZ3oKM2ZvQWVhSTRtSDgyUjBQdTcxTFRmeXRoMytaZG1STVZrMHYra3NJZmZxWVhiUVBnV1M4TDM2dm5neVFad1ExczVzWXRycmQ3OG52bTJtM3Y2RWRlRFE9PQo=",
-      "url": "https://releases.gitbutler.com/releases/release/0.14.4-1569/linux/x86_64/GitButler_0.14.4_amd64.AppImage.tar.gz"
-    },
+    "url": "https://releases.gitbutler.com/releases/release/0.14.4-1569/linux/x86_64/GitButler_0.14.4_amd64.AppImage.tar.gz",
     "hash": "sha256-RX1Jqn4M/chpHlbkFdeOQjxMwJhsa9h8ASBMHzG+Fao="
   }
 }
