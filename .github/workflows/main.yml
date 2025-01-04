@@ -1,0 +1,35 @@
+name: Update to latest version, and update flake inputs
+
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+jobs:
+  update:
+    name: Update flake inputs and gitbutler
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Check flake inputs
+        uses: DeterminateSystems/flake-checker-action@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Set up magic Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Check for update and perform update
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          chmod +x ./update.nu
+          ./update.nu
+
+          nix flake update --commit-lock-file
+
+          nix build && git push
