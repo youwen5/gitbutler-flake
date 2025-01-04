@@ -1,7 +1,8 @@
 {
-  "version": "0.14.4",
+  "version": "0.14.3",
   "x86_64-linux": {
     "url": "https://releases.gitbutler.com/releases/release/0.14.4-1569/linux/x86_64/GitButler_0.14.4_amd64.AppImage.tar.gz",
     "hash": "sha256-RX1Jqn4M/chpHlbkFdeOQjxMwJhsa9h8ASBMHzG+Fao="
   }
 }
+
