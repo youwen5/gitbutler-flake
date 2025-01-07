@@ -7,7 +7,7 @@ def get_latest_release []: nothing -> record {
 }
 
 def get_nix_hash [url: string]: nothing -> string  {
-  nix store prefetch-file --unpack --json $url | from json | get hash
+  nix store prefetch-file  --json $url | from json | get hash
 }
 
 export def generate_sources []: nothing -> record {
