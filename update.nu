@@ -7,7 +7,7 @@ def get_latest_release []: nothing -> record {
 }
 
 def get_nix_hash [url: string]: nothing -> string  {
-  nix store prefetch-file --unpack --json $url | from json | get hash
+  nix store prefetch-file --json $url | from json | get hash
 }
 
 export def generate_sources []: nothing -> record {
@@ -24,12 +24,13 @@ export def generate_sources []: nothing -> record {
 	}
   }
 
-  let x86_64_url = $data | get platforms | get linux-x86_64
+  let x86_64_url = $data | get platforms | get linux-x86_64 | get url | str replace -r '/[^/]*$' $"GitButler_($tag)_amd64.deb"
+  print $x86_64_url
   let sources = {
 	version: $tag
 	x86_64-linux: {
-	  url:  $x86_64_url.url
-	  hash: (get_nix_hash $x86_64_url.url)
+	  url:  $x86_64_url
+	  hash: (get_nix_hash $x86_64_url)
 	}
   }
 

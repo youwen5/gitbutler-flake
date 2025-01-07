@@ -1,36 +1,43 @@
 {
+  stdenv,
+  dpkg,
+  autoPatchelfHook,
+  wrapGAppsHook3,
+  fetchurl,
+  webkitgtk_4_1,
+  libsoup_2_4,
   lib,
+  makeWrapper,
   url,
   version,
   hash,
-  fetchurl,
-  appimageTools,
-  fetchzip,
   ...
 }:
-let
+stdenv.mkDerivation (finalAttrs: {
+  inherit version;
   pname = "gitbutler";
 
-  srcZipped = fetchzip {
-    inherit hash url;
+  src = fetchurl {
+    inherit url hash;
   };
 
-  appimageContents = appimageTools.extract {
-    inherit pname version;
-    src = "${srcZipped}/GitButler_${version}_amd64.AppImage.tar.gz";
-  };
-in
-appimageTools.wrapType2 rec {
-  inherit pname version;
-  src = "${srcZipped}/GitButler_${version}_amd64.AppImage.tar.gz";
+  nativeBuildInputs = [
+    wrapGAppsHook3
+    autoPatchelfHook
+    dpkg
+    webkitgtk_4_1
+    libsoup_2_4
+    makeWrapper
+  ];
 
-  extraInstallCommands = ''
-    # install -Dm755 unpack/usr/bin/gitbutler-tauri $out/bin/gitbutler-tauri
-    # install -Dm755 unpack/usr/bin/gitbutler-git-setsid $out/bin/gitbutler-git-setsid
-    # install -Dm755 unpack/usr/bin/gitbutler-git-askpass $out/bin/gitbutler-git-askpass
+  unpackPhase = "dpkg-deb -x $src unpack";
 
-    # cp -r unpack/usr/share $out/share
-    ls -a appimageContents
+  installPhase = ''
+    install -Dm755 unpack/usr/bin/gitbutler-tauri $out/bin/gitbutler-tauri
+    install -Dm755 unpack/usr/bin/gitbutler-git-setsid $out/bin/gitbutler-git-setsid
+    install -Dm755 unpack/usr/bin/gitbutler-git-askpass $out/bin/gitbutler-git-askpass
+
+    cp -r unpack/usr/share $out/share
   '';
 
   meta = {
@@ -39,4 +46,4 @@ appimageTools.wrapType2 rec {
     mainProgram = "gitbutler-tauri";
     platforms = [ "x86_64-linux" ];
   };
-}
+})
