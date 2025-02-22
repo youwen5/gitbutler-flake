@@ -29,7 +29,8 @@
         {
           default = self.packages.${system}.gitbutler;
           gitbutler = callPackage ./gitbutler.nix {
-            inherit (sources.${system}) url hash version;
+            inherit (sources) version;
+            inherit (sources.${system}) url hash;
           };
         }
       );
