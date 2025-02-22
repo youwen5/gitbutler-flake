@@ -62,6 +62,8 @@ def commit_update []: nothing -> nothing {
     git commit -m $"auto-update: ($gitbutler_latest.prev_tag) -> ($gitbutler_latest.new_tag)"
 
     nix flake update --commit-lock-file
+
+    nix build
   }
 
 }
