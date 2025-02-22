@@ -23,10 +23,14 @@
             config.allowUnfree = true;
           };
           inherit (pkgs) callPackage;
+
+          sources = builtins.fromJSON (builtins.readFile ./sources.json);
         in
         {
           default = self.packages.${system}.gitbutler;
-          gitbutler = callPackage ./gitbutler.nix { };
+          gitbutler = callPackage ./gitbutler.nix {
+            inherit (sources.${system}) url hash version;
+          };
         }
       );
     };

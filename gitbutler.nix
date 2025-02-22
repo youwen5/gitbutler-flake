@@ -8,27 +8,31 @@
   libsoup_2_4,
   lib,
   makeWrapper,
-  ...
+  url,
+  version,
+  hash ? "",
 }:
 stdenv.mkDerivation (finalAttrs: {
+  inherit version;
   pname = "gitbutler";
-  version = "0.14.4";
   src = fetchurl {
-    url = "https://releases.gitbutler.com/releases/release/0.14.4-1569/linux/x86_64/GitButler_${finalAttrs.version}_amd64.deb";
-    hash = "sha256-z643LzoFxb5DKgNCe+h0naC1dA9/VfMAJ7ZSYhibhpQ=";
+    inherit url hash;
+    nativeBuildInputs = [ dpkg ];
+    postFetch = "dpkg-deb -x $downloadedFile $out";
   };
 
   nativeBuildInputs = [
     wrapGAppsHook3
     autoPatchelfHook
-    dpkg
-    webkitgtk_4_1
-    libsoup_2_4
     makeWrapper
   ];
 
-  unpackPhase = "dpkg-deb -x $src unpack";
+  buildInputs = [
+    webkitgtk_4_1
+    libsoup_2_4
+  ];
 
+  # TODO: check that the desktop file points to the right binary! Otherwise, use `substituteInPlace`
   installPhase = ''
     install -Dm755 unpack/usr/bin/gitbutler-tauri $out/bin/gitbutler-tauri
     install -Dm755 unpack/usr/bin/gitbutler-git-setsid $out/bin/gitbutler-git-setsid
