@@ -15,13 +15,12 @@
 stdenv.mkDerivation (finalAttrs: {
   inherit version;
   pname = "gitbutler";
-  src = fetchurl {
-    inherit url hash;
-    nativeBuildInputs = [ dpkg ];
-    postFetch = "dpkg-deb -x $downloadedFile $out";
-  };
+  src = fetchurl { inherit url hash; };
+
+  unpackPhase = "dpkg-deb -x $src unpack";
 
   nativeBuildInputs = [
+    dpkg
     wrapGAppsHook3
     autoPatchelfHook
     makeWrapper
