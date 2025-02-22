@@ -7,7 +7,6 @@
   webkitgtk_4_1,
   libsoup_2_4,
   lib,
-  git,
   makeWrapper,
   ...
 }:
