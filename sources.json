@@ -1,7 +1,7 @@
 {
-  "version": "0.15.1",
+  "version": "0.15.2",
   "x86_64-linux": {
-    "url": "https://releases.gitbutler.com/releases/release/0.15.1-2163/linux/x86_64/GitButler_0.15.1_amd64.deb",
-    "hash": "sha256-o0VU8orz9YrqL+tBQ5les/jSpLqCLWKSn9kzuywWr6s="
+    "url": "https://releases.gitbutler.com/releases/release/0.15.2-2186/linux/x86_64/GitButler_0.15.2_amd64.deb",
+    "hash": "sha256-LLnd+1T4yMMzUw36AicMCcxbDj5u2JpqH6gRNznYW2o="
   }
 }
