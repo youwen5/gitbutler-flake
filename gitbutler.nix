@@ -5,7 +5,7 @@
   wrapGAppsHook3,
   fetchurl,
   webkitgtk_4_1,
-  libsoup_2_4,
+  libsoup_3,
   lib,
   makeWrapper,
   url,
@@ -28,7 +28,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   buildInputs = [
     webkitgtk_4_1
-    libsoup_2_4
+    libsoup_3
   ];
 
   # TODO: check that the desktop file points to the right binary! Otherwise, use `substituteInPlace`
