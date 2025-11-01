@@ -36,7 +36,8 @@ stdenv.mkDerivation (finalAttrs: {
     install -Dm755 unpack/usr/bin/gitbutler-tauri $out/bin/gitbutler-tauri
     install -Dm755 unpack/usr/bin/gitbutler-git-setsid $out/bin/gitbutler-git-setsid
     install -Dm755 unpack/usr/bin/gitbutler-git-askpass $out/bin/gitbutler-git-askpass
-    install -Dm755 unpack/usr/bin/but $out/bin/but
+    ln -s gitbutler-tauri $out/bin/gitbutler
+    ln -s gitbutler-tauri $out/bin/but
 
     cp -r unpack/usr/share $out/share
   '';
